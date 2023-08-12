@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Sacramente</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2 class="centrum">
+        Таинство крещения
+        <br>
+        Die Sakramente der Taufe </h2>
+    <?php
+    echo 'Now: '. time();
+    ?>
+    <hr>
+    <form action="php/code/worker.php" method="post">
+        <div class="ramen">
+            <h3 class="centrum">Taufkind</h3>
+            <div class="form-group row">
+                <label for="vornameKind" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="col-10">
+                    <input id="vornameKind" name="vornameKind" type="text" class="form-control " required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nameKind" class="col-2 col-form-label">Фамилия / Name</label>
+                <div class="col-10">
+                    <input id="nameKind" name="nameKind" type="text" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateKind" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateKind" name="dateKind" type="date" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="geburstortKind" class="col-2 col-form-label">Место рождения / Geburstort</label>
+                <div class="col-10">
+                    <input id="geburstortKind" name="geburstortKind" type="text" class="form-control"
+                           required="required">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="ramen">
+            <h3 class="centrum">День ангела / Namestag</h3>
+            <div class="form-group row">
+                <label for="dateNamestag" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateNamestag" name="dateNamestag" type="date" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="feiertagNamestag" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="info">
+                    <input id="feiertagNamestag" name="feiertagNamestag" type="text" class="form-control"
+                           required="required">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                        Suche
+                    </button>
+                </div>
+                <div class="form-group row">
+                    <label for="sacramenteDatum" class="col-2 col-form-label">Дата / Datum :</label>
+                    <div class="col-3">
+                        <input id="sacramenteDatum" name="sacramenteDatum" type="date" class="form-control"
+                               required="required">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="col-12">
+            <input type="checkbox" id="vaterId" onclick="validate()" class="checkBox">
+            <label for="vornameVater" class="col-4 col-form-label labelCheckbox">Information über Vater</label>
+        </div>
+        <div class="ramen" id="vaterForm" style="display: none">
+            <h3 class="centrum">Отец / Vater</h3>
+            <div class="form-group row">
+                <label for="vornameVater" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="col-10">
+                    <input id="vornameVater" name="vornameVater" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nameVater" class="col-2 col-form-label">Фамилия / Name</label>
+                <div class="col-10">
+                    <input id="nameVater" name="nameVater" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateVater" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateVater" name="dateVater" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="geburstortVater" class="col-2 col-form-label">Место рождения / Geburstort</label>
+                <div class="col-10">
+                    <input id="geburstortVater" name="geburstortVater" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+        <div class="col-12">
+            <input type="checkbox" id="mutterId" onclick="validate()" class="checkBox">
+            <label for="vornameMutter" class="col-4 col-form-label labelCheckbox">Information über Mutter</label>
+        </div>
+        <div class="ramen" id="mutterForm" style="display: none">
+            <h3 class="centrum">Мать / Mutter</h3>
+            <div class="form-group row">
+                <label for="vornameMutter" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="col-10">
+                    <input id="vornameMutter" name="vornameMutter" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nameMutter" class="col-2 col-form-label">Фамилия / Name</label>
+                <div class="col-10">
+                    <input id="nameMutter" name="nameMutter" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateMutter" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateMutter" name="dateMutter" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="geburstortMutter" class="col-2 col-form-label">Место рождения / Geburstort</label>
+                <div class="col-10">
+                    <input id="geburstortMutter" name="geburstortMutter" type="text" class="form-control"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="col-12">
+            <input type="checkbox" id="taufpateId" onclick="validate()" class="checkBox">
+            <label for="vornameTaufpate" class="col-4 col-form-label labelCheckbox">Information über Taufpate</label>
+        </div>
+        <div class="ramen" id="taufpateForm" style="display: none">
+            <h3 class="centrum">Крёстный Отец / Taufpate</h3>
+            <div class="form-group row">
+                <label for="vornameTaufpate" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="col-10">
+                    <input id="vornameTaufpate" name="vornameTaufpate" type="text" class="form-control"
+                    >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nameTaufpate" class="col-2 col-form-label">Фамилия / Name</label>
+                <div class="col-10">
+                    <input id="nameTaufpate" name="nameTaufpate" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateTaufpate" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateTaufpate" name="dateTaufpate" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="geburstortTaufpate" class="col-2 col-form-label">Место рождения / Geburstort</label>
+                <div class="col-10">
+                    <input id="geburstortTaufpate" name="geburstortTaufpate" type="text" class="form-control"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="col-12">
+            <input type="checkbox" id="taufpatinId" onclick="validate()" class="checkBox">
+            <label for="vornameTaufpatin" class="col-4 col-form-label labelCheckbox">Information über Taufpatin</label>
+        </div>
+        <div class="ramen" id="taufpatinForm" style="display: none">
+            <h3 class="centrum">Крёстный Отец / Taufpatin</h3>
+            <div class="form-group row">
+                <label for="vornameTaufpatin" class="col-2 col-form-label">Имя / Vorname :</label>
+                <div class="col-10">
+                    <input id="vornameTaufpatin" name="vornameTaufpatin" type="text" class="form-control"
+                    >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nameTaufpatin" class="col-2 col-form-label">Фамилия / Name</label>
+                <div class="col-10">
+                    <input id="nameTaufpatin" name="nameTaufpatin" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateTaufpatin" class="col-2 col-form-label">Geburtsdatum</label>
+                <div class="col-3">
+                    <input id="dateTaufpatin" name="dateTaufpatin" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="geburstortTaufpatin" class="col-2 col-form-label">Место рождения / Geburstort</label>
+                <div class="col-10">
+                    <input id="geburstortTaufpatin" name="geburstortTaufpatin" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-primary">Erstellen</button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Suche nach Patronname</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="searchModalDate" class="col-form-label">Geburtsdatum</label>
+                        <input id="searchModalDate" name="searchModalDate" type="date" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <input id="searchModalName" type="search" class="form-control rounded"
+                               placeholder="Имя / Name: " aria-label="Search" aria-describedby="search-addon"/>
+                        <button type="button" class="btn btn-outline-primary" onclick="search()">Suchen</button>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                    <button type="button" class="btn btn-primary" onclick="putInField()">Übernehmen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
