@@ -35,8 +35,21 @@ input{
 }
 .btn{
     padding: 1px 4px !important;
+}
+.suche-button {
     margin-left: 5px !important;
 }
 .input-group{
     margin-top: 5px;
+}
+.table-wrap {
+    height: 200px;
+    overflow-y: auto;
+}
+tr:hover{
+    background: #3d777c;
+}
+.ui-datepicker-year
+{
+    display:none;
 }
