@@ -82,13 +82,9 @@ function loadData(searchName) {
 
 
     function adjustToField(str) {
-        var myModal = new bootstrap.Modal(document.getElementById('pattronNameAdjustingModal'), {keyboard: false});
+        const myModal = new bootstrap.Modal(document.getElementById('pattronNameAdjustingModal'), {keyboard: false});
         document.getElementById('patronenNameField').value = str;
         myModal.show();
-        myModal.addEventListener('hidden.bs.modal', function (event) {
-            console.log("am hier")
-            document.getElementById('feiertagNamestag').value = document.getElementById('patronenNameField').value;
-        })
     }
 
     httpRequest.onload = function () {

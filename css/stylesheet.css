@@ -53,3 +53,9 @@ tr:hover{
 {
     display:none;
 }
+.ptNameModal{
+    background-color: #f5f2e9!important;
+}
+#patronenNameField{
+    height: 200px;
+}
