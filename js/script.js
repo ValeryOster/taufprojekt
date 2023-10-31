@@ -70,23 +70,6 @@ function loadData(searchName) {
     httpRequest.open('POST', 'php/db/search.php', true);
     httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    function dateFormating(date) {
-        let splice = date.split("-");
-        return splice[2] + "." + splice[1] + "." + splice[0];
-    }
-
-    function dateFormatingAmis(date) {
-        let splice = date.split(".");
-        return splice[2] + "-" + splice[1] + "-" + splice[0];
-    }
-
-
-    function adjustToField(str) {
-        const myModal = new bootstrap.Modal(document.getElementById('pattronNameAdjustingModal'), {keyboard: false});
-        document.getElementById('patronenNameField').value = str;
-        myModal.show();
-    }
-
     httpRequest.onload = function () {
 
         let newResp = this.responseText.replaceAll(String.fromCharCode(92) + "u2020", "");
@@ -119,12 +102,27 @@ function loadData(searchName) {
         }
     }
 
-    httpRequest.send("search=" + searchName);
+    httpRequest.send("searchName=" + searchName);
+    httpRequest.onreadystatechange = function () { };
 
 
-    httpRequest.onreadystatechange = function () {
-    };
+    function dateFormating(date) {
+        let splice = date.split("-");
+        return splice[2] + "." + splice[1] + "." + splice[0];
+    }
 
+    function dateFormatingAmis(date) {
+        let splice = date.split(".");
+        return splice[2] + "-" + splice[1] + "-" + splice[0];
+    }
+    function adjustToField(str) {
+        const myModal = new bootstrap.Modal(document.getElementById('pattronNameAdjustingModal'), {keyboard: false});
+        document.getElementById('patronenNameField').value = str;
+        myModal.show();
+        $('#pattronNameAdjustingModal').on('hidden.bs.modal', function (e) {
+            document.getElementById('feiertagNamestag').value = document.getElementById('patronenNameField').value;
+        });
+    }
 }
 
 function search() {

@@ -2,9 +2,9 @@
 include "dbconnection.php";
 
 
-$search = $_POST['search'];
+$searchName = $_POST['searchName'];
 if ( isset( $search ) ) {
-	$Name      = $search;
+	$Name      = $searchName;
 	$Query     = "SELECT * FROM heiligen WHERE name LIKE '%$Name%'";
 	$ExecQuery = MySQLi_query( $conn, $Query );
 
