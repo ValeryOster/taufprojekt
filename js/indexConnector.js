@@ -1,66 +1,6 @@
-function validate() {
-    if (document.getElementById('vaterId').checked) {
-        document.getElementById('vaterForm').style.display = '';
-        setVater(true);
-    } else {
-        document.getElementById('vaterForm').style.display = 'none';
-        setVater(false);
-    }
 
-    if (document.getElementById('mutterId').checked) {
-        document.getElementById('mutterForm').style.display = '';
-        setMutter(true);
-    } else {
-        document.getElementById('mutterForm').style.display = 'none';
-        setMutter(false);
-    }
 
-    if (document.getElementById('taufpateId').checked) {
-        document.getElementById('taufpateForm').style.display = '';
-        setTaufpate(true);
-    } else {
-        document.getElementById('taufpateForm').style.display = 'none'
-        setTaufpate(false);
-    }
-
-    if (document.getElementById('taufpatinId').checked) {
-        document.getElementById('taufpatinForm').style.display = '';
-        setTaufpatin(true);
-    } else {
-        document.getElementById('taufpatinForm').style.display = 'none';
-        setTaufpatin(false);
-    }
-}
-
-function setVater(myVar) {
-    document.getElementById('vornameVater').required = myVar;
-    document.getElementById('nameVater').required = myVar;
-    document.getElementById('dateVater').required = myVar;
-    document.getElementById('geburstortVater').required = myVar;
-}
-
-function setMutter(myVar) {
-    document.getElementById('vornameMutter').required = myVar;
-    document.getElementById('nameMutter').required = myVar;
-    document.getElementById('dateMutter').required = myVar;
-    document.getElementById('geburstortMutter').required = myVar;
-}
-
-function setTaufpate(myVar) {
-    document.getElementById('vornameTaufpate').required = myVar;
-    document.getElementById('nameTaufpate').required = myVar;
-    document.getElementById('dateTaufpate').required = myVar;
-    document.getElementById('geburstortTaufpate').required = myVar;
-}
-
-function setTaufpatin(myVar) {
-    document.getElementById('vornameTaufpatin').required = myVar;
-    document.getElementById('nameTaufpatin').required = myVar;
-    document.getElementById('dateTaufpatin').required = myVar;
-    document.getElementById('geburstortTaufpatin').required = myVar;
-}
-
-function loadData(searchName) {
+function loadData(search, isDate=true) {
     let tableBody = document.getElementById("resultSearchTable");
     for (var i = 1; i < tableBody.rows.length;) {
         tableBody.deleteRow(i);
@@ -71,7 +11,6 @@ function loadData(searchName) {
     httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     httpRequest.onload = function () {
-
         let newResp = this.responseText.replaceAll(String.fromCharCode(92) + "u2020", "");
         try {
             let resultTexting = JSON.parse(newResp);
@@ -90,21 +29,20 @@ function loadData(searchName) {
                         });
                         iterator++;
                     });
-
-
                 } else {
                     html += '<tr><td colspan="3" class="text-center">No Data Found</td></tr>';
                 }
-
             }
         } catch (e) {
             console.log("Error: ", e.message);
         }
     }
-
-    httpRequest.send("searchName=" + searchName);
+    if (isDate) {
+        httpRequest.send("searchDate=" + search);
+    } else {
+        httpRequest.send("searchName=" + search);
+    }
     httpRequest.onreadystatechange = function () { };
-
 
     function dateFormating(date) {
         let splice = date.split("-");
@@ -128,9 +66,12 @@ function loadData(searchName) {
 function search() {
     let searchName = document.getElementById('searchModalName').value;
     if (searchName) {
-        loadData(searchName);
+        loadData(searchName, false);
     } else {
         let searchDate = document.getElementById('searchModalDate').value;
+        if (searchDate) {
+            loadData(searchDate);
+        }
     }
 }
 
