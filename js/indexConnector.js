@@ -70,6 +70,12 @@ function search() {
     } else {
         let searchDate = document.getElementById('searchModalDate').value;
         if (searchDate) {
+            let month = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+            let searchElement = searchDate.split(" ")[1].trim();
+            let monthNr = month.indexOf(searchElement)+1;
+            let nullIfNotTen = monthNr < 10 ? "0" : "";
+            searchDate="2023-"+ nullIfNotTen +""+monthNr+"-"+searchDate.split(" ")[0].trim()
+            console.log(searchDate);
             loadData(searchDate);
         }
     }

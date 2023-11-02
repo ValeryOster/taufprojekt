@@ -7,7 +7,7 @@ if ( isset( $searchName ) ) {
 	$Query     = "SELECT * FROM heiligen WHERE name LIKE '%$searchName%'";
 }else {
 	$searchDate = $_POST['searchDate'];
-	$Query     = "SELECT * FROM heiligen WHERE date='$searchDate'";
+	$Query     = "SELECT * FROM heiligen WHERE date like '$searchDate'";
 }
 $ExecQuery = MySQLi_query( $conn, $Query );
 
@@ -27,5 +27,4 @@ if ( $ExecQuery->num_rows > 0 ) {
 	$json_encode = json_encode( $finalResult );
 	echo $json_encode;
 	die();
-}
 
