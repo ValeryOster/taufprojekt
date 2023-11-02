@@ -7,7 +7,7 @@ if ( isset( $searchName ) ) {
 	$Query     = "SELECT * FROM heiligen WHERE name LIKE '%$searchName%'";
 }else {
 	$searchDate = $_POST['searchDate'];
-	$Query     = "SELECT * FROM heiligen WHERE date like '$searchDate'";
+	$Query     = "SELECT * FROM heiligen WHERE DATE(date) ='$searchDate'";
 }
 $ExecQuery = MySQLi_query( $conn, $Query );
 

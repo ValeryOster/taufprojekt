@@ -12,6 +12,8 @@ function loadData(search, isDate=true) {
 
     httpRequest.onload = function () {
         let newResp = this.responseText.replaceAll(String.fromCharCode(92) + "u2020", "");
+        newResp = newResp.split("</font>")[1];
+        console.log(newResp);
         try {
             let resultTexting = JSON.parse(newResp);
             if (httpRequest.readyState === 4 && httpRequest.status === 200) {
@@ -75,7 +77,6 @@ function search() {
             let monthNr = month.indexOf(searchElement)+1;
             let nullIfNotTen = monthNr < 10 ? "0" : "";
             searchDate="2023-"+ nullIfNotTen +""+monthNr+"-"+searchDate.split(" ")[0].trim()
-            console.log(searchDate);
             loadData(searchDate);
         }
     }
