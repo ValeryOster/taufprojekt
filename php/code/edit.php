@@ -21,7 +21,7 @@ class CreatePDFFromTamplate {
 			$this->pdf->SetTextColor( 0, 0, 0 );
 
 			foreach ( $date as $key => $value ) {
-				if(empty($value)) {
+				if(!empty($value)) {
 					switch ( $key ) {
 						//***Kind***
 						case "vornameKind"://Vorname
@@ -97,8 +97,7 @@ class CreatePDFFromTamplate {
 							$this->setXYText( 190, 97, $value );
 							break;
 
-						default:
-							echo "Your favorite color is neither red, blue, nor green!";
+						default:;
 					}
 				}
 			}
@@ -137,7 +136,7 @@ class CreatePDFFromTamplate {
 	 * @return void
 	 */
 	public function setXYText( $x, $y, $text ): void {
-		$this->pdf->SetXY( $x, $x );
+		$this->pdf->SetXY( $x, $y );
 		$this->pdf->Write( 0, $text );
 	}
 }
