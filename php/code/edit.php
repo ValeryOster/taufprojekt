@@ -11,7 +11,7 @@ class CreatePDFFromTamplate {
 		$this->pdf->AddPage();
 	}
 
-	public function getAuthorName( $date ) {
+	public function createPDFFromTamplate( $date ) {
 		try {
 			$this->pdf->setSourceFile( 'Vorlage.pdf' );
 			$tplIdx = $this->pdf->importPage( 1 );
@@ -21,83 +21,85 @@ class CreatePDFFromTamplate {
 			$this->pdf->SetTextColor( 0, 0, 0 );
 
 			foreach ( $date as $key => $value ) {
-				switch ( $key ) {
-					//***Kind***
-					case "vornameKind"://Vorname
-						$this->setXYText( 90, 77, $value );
-						break;
-					case "nameKind"://Nachname
-						$this->setXYText( 90, 82, $value );
-						break;
-					case "dateKind"://Geburtsdatum
-						$this->setXYText( 90, 87, $value );
-						break;
-					case "geburstortKind":
-						$this->setXYText( 90, 92, $value );
-						break;
-					//*** NamesTag
-					case "dateNamestag"://Tag
-						$this->setXYText( 90, 105, $value );
-						break;
-					case "feiertagNamestag":// Beschreibung
-						$this->setXYText( 90, 110, $value );
-						break;
+				if(empty($value)) {
+					switch ( $key ) {
+						//***Kind***
+						case "vornameKind"://Vorname
+							$this->setXYText( 90, 77, $value );
+							break;
+						case "nameKind"://Nachname
+							$this->setXYText( 90, 82, $value );
+							break;
+						case "dateKind"://Geburtsdatum
+							$this->setXYText( 90, 87, $value );
+							break;
+						case "geburstortKind":
+							$this->setXYText( 90, 92, $value );
+							break;
+						//*** NamesTag
+						case "dateNamestag"://Tag
+							$this->setXYText( 90, 105, $value );
+							break;
+						case "feiertagNamestag":// Beschreibung
+							$this->setXYText( 90, 110, $value );
+							break;
 //*** Vater von Taufkind ***
-					case "vornameVater":
-						$this->setXYText( 90, 123, $value );
-						break;
-					case "nameVater":
-						$this->setXYText( 90, 128, $value );
-						break;
-					case "dateVater":
-						$this->setXYText( 90, 133, $value );
-						break;
-					case "geburstortVater":
-						$this->setXYText( 90, 138, $value );
-						break;
+						case "vornameVater":
+							$this->setXYText( 90, 123, $value );
+							break;
+						case "nameVater":
+							$this->setXYText( 90, 128, $value );
+							break;
+						case "dateVater":
+							$this->setXYText( 90, 133, $value );
+							break;
+						case "geburstortVater":
+							$this->setXYText( 90, 138, $value );
+							break;
 
 //*** Mutter von Taufkind ***
-					case "vornameMutter":
-						$this->setXYText( 90, 153, $value );
-						break;
-					case "nameMutter":
-						$this->setXYText( 90, 158, $value );
-						break;
-					case "dateMutter":
-						$this->setXYText( 90, 163, $value );
-						break;
-					case "geburstortMutter":
-						$this->setXYText( 90, 168, $value );
-						break;
+						case "vornameMutter":
+							$this->setXYText( 90, 153, $value );
+							break;
+						case "nameMutter":
+							$this->setXYText( 90, 158, $value );
+							break;
+						case "dateMutter":
+							$this->setXYText( 90, 163, $value );
+							break;
+						case "geburstortMutter":
+							$this->setXYText( 90, 168, $value );
+							break;
 //*** Taufpate ***
-					case "vornameTaufpate":
-						$this->setXYText( 190, 51, $value );
-						break;
-					case "nameTaufpate":
-						$this->setXYText( 190, 56, $value );
-						break;
-					case "dateTaufpate":
-						$this->setXYText( 190, 61, $value );
-						break;
-					case "geburstortTaufpate":
-						$this->setXYText( 190, 66, $value );
-						break;
+						case "vornameTaufpate":
+							$this->setXYText( 190, 51, $value );
+							break;
+						case "nameTaufpate":
+							$this->setXYText( 190, 56, $value );
+							break;
+						case "dateTaufpate":
+							$this->setXYText( 190, 61, $value );
+							break;
+						case "geburstortTaufpate":
+							$this->setXYText( 190, 66, $value );
+							break;
 //*** Taufpatin ***
-					case "vornameTaufpatin":
-						$this->setXYText( 190, 82, $value );
-						break;
-					case "nameTaufpatin":
-						$this->setXYText( 190, 87, $value );
-						break;
-					case "dateTaufpatin":
-						$this->setXYText( 190, 92, $value );
-						break;
-					case "geburstortTaufpatin":
-						$this->setXYText( 190, 97, $value );
-						break;
+						case "vornameTaufpatin":
+							$this->setXYText( 190, 82, $value );
+							break;
+						case "nameTaufpatin":
+							$this->setXYText( 190, 87, $value );
+							break;
+						case "dateTaufpatin":
+							$this->setXYText( 190, 92, $value );
+							break;
+						case "geburstortTaufpatin":
+							$this->setXYText( 190, 97, $value );
+							break;
 
-					default:
-						echo "Your favorite color is neither red, blue, nor green!";
+						default:
+							echo "Your favorite color is neither red, blue, nor green!";
+					}
 				}
 			}
 
