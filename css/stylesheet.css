@@ -9,6 +9,11 @@
 .centrum {
     padding-left: 35%;
 }
+.headText {
+    padding-top: 20px;
+    padding-left: 30%;
+    font-weight: 700;
+}
 
 .checkBox {
     width: 20px;

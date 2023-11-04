@@ -12,13 +12,9 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="centrum">
-        Таинство крещения
-        <br>
-        Die Sakramente der Taufe </h2>
-    <?php
-    echo 'Now: '. time();
-    ?>
+    <h2 class="headText ">
+        Таинство крещения / Die Sakramente der Taufe
+    </h2>
     <hr>
     <form action="php/code/worker.php" method="post">
         <div class="ramen">
@@ -216,13 +212,12 @@
 
 
         <div class="form-group row">
-            <div class="offset-4 col-8">
-                <button name="submit" type="submit" class="btn btn-primary">Erstellen</button>
+            <div class="offset-7 col-8">
+                <button name="submit" type="submit" class="btn btn-success btn-lg"> PDF Erstellen </button>
             </div>
         </div>
 
     </form>
-
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

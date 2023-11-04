@@ -12,7 +12,12 @@ function loadData(search, isDate=true) {
 
     httpRequest.onload = function () {
         let newResp = this.responseText.replaceAll(String.fromCharCode(92) + "u2020", "");
-        newResp = newResp.split("</font>")[1];
+
+        //Delete INFO NO JSON
+        let string = newResp.split("</font>")[1];
+        if (string) {
+            newResp = string;
+        }
 
         try {
             let resultTexting = JSON.parse(newResp);
