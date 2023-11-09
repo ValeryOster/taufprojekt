@@ -38,10 +38,10 @@ class CreatePDFFromTamplate {
 							break;
 						//*** NamesTag
 						case "dateNamestag"://Tag
-							$this->setXYText( 90, 105, $value );
+							$this->setXYText( 85, 105, $value );
 							break;
 						case "feiertagNamestag":// Beschreibung
-							$this->setXYText( 90, 110, $value );
+							$this->setXYText( $this->findMiddleForText($value), 110, $value );// von 55 bis 140 pixel
 							break;
 //*** Vater von Taufkind ***
 						case "vornameVater":
@@ -138,5 +138,19 @@ class CreatePDFFromTamplate {
 	public function setXYText( $x, $y, $text ): void {
 		$this->pdf->SetXY( $x, $y );
 		$this->pdf->Write( 0, $text );
+	}
+
+	private function findMiddleForText( mixed $value ) {
+		$x1 = 55;
+		$x2 = 137;
+		$valueLength = strlen( $value );
+		$boxMiddle = $x2 - $x1;
+		if ( $valueLength > $boxMiddle ) {
+
+		}else{
+			return $boxMiddle - $valueLength  / 2;
+		}
+
+		return 0;
 	}
 }

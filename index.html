@@ -81,16 +81,12 @@
                 <div class="form-group row">
                     <label for="sacramenteSpendete" class="col-2 col-form-label">Die Sakramente spendete:</label>
                     <div class="col-3">
-                        <div class="btn-group">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="sacramenteSpendete"
-                                    name="sacramenteSpendete" data-bs-toggle="dropdown" aria-expanded="false" required="required">
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                <li><a class="dropdown-item" href="#">Menu item</a></li>
-                            </ul>
-                        </div>
+                        <select id="sacramenteSpendete" name="sacramenteSpendete" required>
+                            <option>Bitte eine Variante auswählen</option>
+                            <option>Prister Viktor Aleksejv</option>
+                            <option>Prister Andrej Mololkin </option>
+
+                        </select>
                     </div>
                 </div>
             </div>
@@ -128,8 +124,6 @@
                 </div>
             </div>
         </div>
-
-
         <hr>
         <div class="col-12">
             <input type="checkbox" id="mutterId" onclick="validate()" class="checkBox">
@@ -235,7 +229,7 @@
 
         <div class="form-group row">
             <div class="offset-7 col-8">
-                <button name="submit" type="submit" class="btn btn-success btn-lg"> PDF Erstellen </button>
+                <button name="submit" type="submit" class="btn btn-success btn-lg"> PDF Erstellen</button>
             </div>
         </div>
 
