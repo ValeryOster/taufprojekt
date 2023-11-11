@@ -21,84 +21,83 @@ class CreatePDFFromTamplate {
 			$this->pdf->SetTextColor( 0, 0, 0 );
 
 			foreach ( $date as $key => $value ) {
-				if(!empty($value)) {
-					switch ( $key ) {
-						//***Kind***
-						case "vornameKind"://Vorname
-							$this->setXYText( 90, 77, $value );
-							break;
-						case "nameKind"://Nachname
-							$this->setXYText( 90, 82, $value );
-							break;
-						case "dateKind"://Geburtsdatum
-							$this->setXYText( 90, 87, $value );
-							break;
-						case "geburstortKind":
-							$this->setXYText( 90, 92, $value );
-							break;
-						//*** NamesTag
-						case "dateNamestag"://Tag
-							$this->setXYText( 85, 105, $value );
-							break;
-						case "feiertagNamestag":// Beschreibung
-							$this->setXYText( $this->findMiddleForText($value), 110, $value );// von 55 bis 140 pixel
-							break;
+				switch ( $key ) {
+					//***Kind***
+					case "vornameKind"://Vorname
+						$this->setXYText( 90, 77, $value );
+						break;
+					case "nameKind"://Nachname
+						$this->setXYText( 90, 82, $value );
+						break;
+					case "dateKind"://Geburtsdatum
+						$this->setXYText( 90, 87, $value );
+						break;
+					case "geburstortKind":
+						$this->setXYText( 90, 92, $value );
+						break;
+					//*** NamesTag
+					case "dateNamestag"://Tag
+						$this->setXYText( 85, 105, $value );
+						break;
+					case "feiertagNamestag":// Beschreibung
+						$this->findMiddleForText( $value );// von 55 bis 140 pixel
+						break;
 //*** Vater von Taufkind ***
-						case "vornameVater":
-							$this->setXYText( 90, 123, $value );
-							break;
-						case "nameVater":
-							$this->setXYText( 90, 128, $value );
-							break;
-						case "dateVater":
-							$this->setXYText( 90, 133, $value );
-							break;
-						case "geburstortVater":
-							$this->setXYText( 90, 138, $value );
-							break;
+					case "vornameVater":
+						$this->pringIfExist(90, 123,$value );
+						break;
+					case "nameVater":
+						$this->pringIfExist( 90, 128, $value );
+						break;
+					case "dateVater":
+						$this->pringIfExist( 90, 133, $value );
+						break;
+					case "geburstortVater":
+						$this->pringIfExist( 90, 138, $value );
+						break;
 
 //*** Mutter von Taufkind ***
-						case "vornameMutter":
-							$this->setXYText( 90, 153, $value );
-							break;
-						case "nameMutter":
-							$this->setXYText( 90, 158, $value );
-							break;
-						case "dateMutter":
-							$this->setXYText( 90, 163, $value );
-							break;
-						case "geburstortMutter":
-							$this->setXYText( 90, 168, $value );
-							break;
+					case "vornameMutter":
+						$this->pringIfExist( 90, 153, $value );
+						break;
+					case "nameMutter":
+						$this->pringIfExist( 90, 158, $value );
+						break;
+					case "dateMutter":
+						$this->pringIfExist( 90, 163, $value );
+						break;
+					case "geburstortMutter":
+						$this->pringIfExist( 90, 168, $value );
+						break;
 //*** Taufpate ***
-						case "vornameTaufpate":
-							$this->setXYText( 190, 51, $value );
-							break;
-						case "nameTaufpate":
-							$this->setXYText( 190, 56, $value );
-							break;
-						case "dateTaufpate":
-							$this->setXYText( 190, 61, $value );
-							break;
-						case "geburstortTaufpate":
-							$this->setXYText( 190, 66, $value );
-							break;
+					case "vornameTaufpate":
+						$this->pringIfExist( 190, 51, $value );
+						break;
+					case "nameTaufpate":
+						$this->pringIfExist( 190, 56, $value );
+						break;
+					case "dateTaufpate":
+						$this->pringIfExist( 190, 61, $value );
+						break;
+					case "geburstortTaufpate":
+						$this->pringIfExist( 190, 66, $value );
+						break;
 //*** Taufpatin ***
-						case "vornameTaufpatin":
-							$this->setXYText( 190, 82, $value );
-							break;
-						case "nameTaufpatin":
-							$this->setXYText( 190, 87, $value );
-							break;
-						case "dateTaufpatin":
-							$this->setXYText( 190, 92, $value );
-							break;
-						case "geburstortTaufpatin":
-							$this->setXYText( 190, 97, $value );
-							break;
+					case "vornameTaufpatin":
+						$this->pringIfExist( 190, 82, $value );
+						break;
+					case "nameTaufpatin":
+						$this->pringIfExist( 190, 87, $value );
+						break;
+					case "dateTaufpatin":
+						$this->pringIfExist( 190, 92, $value );
+						break;
+					case "geburstortTaufpatin":
+						$this->pringIfExist( 190, 97, $value );
+						break;
 
-						default:;
-					}
+					default:
+						;
 				}
 			}
 
@@ -141,16 +140,47 @@ class CreatePDFFromTamplate {
 	}
 
 	private function findMiddleForText( mixed $value ) {
-		$x1 = 55;
-		$x2 = 137;
-		$valueLength = strlen( $value );
-		$boxMiddle = $x2 - $x1;
-		if ( $valueLength > $boxMiddle ) {
 
-		}else{
-			return $boxMiddle - $valueLength  / 2;
+		$valueLength = strlen( $value );
+		$boxMiddle   = 81;
+		if ( $valueLength > 50 ) {
+			$lineONe = $this->getSplit( $value );
+			$lineTwo = substr( $value, strlen( $lineONe ) );
+			$this->setXYText( 55, 110, $lineONe );
+			$this->setXYText( 55, 114, trim( $lineTwo ) );
+
+		} else {
+			$x = $boxMiddle - $valueLength / 2;
+			$this->setXYText( $x, 110, $value );
+		}
+
+	}
+
+	public function getSplit( $value ): mixed {
+		$line      = "";
+		$str_split = preg_split( '/\s+/', $value );
+		foreach ( $str_split as $word ) {
+			if ( strlen( $line ) < 45 ) {
+				$line = $line . "" . $word . " ";
+			} else {
+				return $line;
+			}
 		}
 
 		return 0;
+	}
+
+	/**
+	 * @param mixed $value
+	 *
+	 * @return void
+	 */
+	public function pringIfExist( $x, $y, $value ): void {
+		if ( $value != '' ) {
+			$this->setXYText( $x, $y, $value );
+		} else {
+			$this->setXYText( $x, $y, "--" );
+
+		}
 	}
 }
