@@ -42,6 +42,9 @@ class CreatePDFFromTamplate {
 					case "feiertagNamestag":// Beschreibung
 						$this->findMiddleForText( $value );// von 55 bis 140 pixel
 						break;
+					case "sacramenteSpendete":
+						$this->setXYText(200, 168.5 , trim($value));
+						break;
 //*** Vater von Taufkind ***
 					case "vornameVater":
 						$this->pringIfExist(90, 123,$value );
@@ -109,19 +112,8 @@ class CreatePDFFromTamplate {
 			//*** Register Nummer ***
 			$this->pdf->SetFont( 'Arial', 'B', 14 );
 			$this->pdf->SetXY( 201, 137.3 );
+			$this->pdf->Write( 0, $date["sacramenteRegNummer"] );
 
-			$str = "register.txt";
-			$fp = fopen( $str, "w" ) or die( "Unable to open file!" );
-			$value = 0;
-			if ( filesize( $str ) > 0 ) {
-				$contents = fread( $fp, filesize( $str ) );
-				$value    = trim( file_get_contents( $fp ) );
-			} else {
-				$value = 1;
-			}
-			$this->pdf->Write( 0, $value );
-			fwrite( $fp, $value ++ );
-			fclose( $fp );
 
 		} catch
 		( \setasign\Fpdi\PdfParser\PdfParserException|\setasign\Fpdi\PdfReader\PdfReaderException $e ) {
