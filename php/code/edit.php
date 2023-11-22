@@ -108,7 +108,6 @@ class CreatePDFFromTamplate {
 			$this->pdf->SetXY( 170, 164 );
 			$this->pdf->Write( 0, '21.01.2023' );
 
-
 			//*** Register Nummer ***
 			$this->pdf->SetFont( 'Arial', 'B', 14 );
 			$this->pdf->SetXY( 201, 137.3 );

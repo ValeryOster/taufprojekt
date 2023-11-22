@@ -26,6 +26,7 @@ function validate() {
     if (document.getElementById('taufpatinId').checked) {
         document.getElementById('taufpatinForm').style.display = '';
         setTaufpatin(true);
+
     } else {
         document.getElementById('taufpatinForm').style.display = 'none';
         setTaufpatin(false);
